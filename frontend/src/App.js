@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import Footer from "./Components/Footer";
+import Header from "./Components/Header";
+import { Container } from "react-bootstrap";
+import {Outlet} from 'react-router-dom';
+import {LoadUser} from './store/Actions/UserActions';
+import { getTasks } from "./store/Actions/TaskActions";
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(LoadUser());
+    dispatch(getTasks());
+  }, [dispatch]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <main>
+        <Container className="py-3">
+          <Outlet />
+        </Container>
+      </main>
+      <Footer />
+    </>
   );
 }
 
