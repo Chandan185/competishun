@@ -56,7 +56,7 @@ export const LoginUser = (email, password) => {
     return async (dispatch) => {
       dispatch(LoginActions.loaduserrequest());
       const loaduser = async () => {
-        const { data } = await axios.get(`http://localhost:4000/api/users/profile`, {
+        const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/profile`, {
           withCredentials: true,
         });
         return data;
@@ -74,7 +74,7 @@ export const LoginUser = (email, password) => {
     return async (dispatch) => {
       dispatch(LoginActions.logoutrequest());
       const logout = async () => {
-        const { data } = await axios.get(`http://localhost:4000/api/users/logout`, {
+        const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/logout`, {
           withCredentials: true,
         });
         return data;

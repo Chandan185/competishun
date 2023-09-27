@@ -6,7 +6,7 @@ export const addTask = (description) => {
     dispatch(TaskActions.addtaskrequest());
     const addtask = async () => {
       const { data } = await axios.post(
-        "http://localhost:4000/api/tasks/new",
+        `${process.env.REACT_APP_BASE_URL}/tasks/new`,
         { description },
         { withCredentials: true }
       );
@@ -25,7 +25,7 @@ export const getTasks = () => {
   return async (dispatch) => {
     dispatch(TaskActions.loadtaskrequest());
     const loadtask = async () => {
-      const { data } = await axios.get(`http://localhost:4000/api/tasks/`, {
+      const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/tasks/`, {
         withCredentials: true,
       });
       return data;
@@ -43,7 +43,7 @@ export const updateTask = (id, description, status) => {
     dispatch(TaskActions.updatetaskrequest());
     const updatetask = async () => {
       const { data } = await axios.put(
-        `http://localhost:4000/api/tasks/${id}/update`,
+        `${process.env.REACT_APP_BASE_URL}/tasks/${id}/update`,
         { description, status },
         { withCredentials: true }
       );
@@ -63,7 +63,7 @@ export const deleteTask = (id) => {
     dispatch(TaskActions.deletetaskrequest());
     const deletetask = async () => {
       const { data } = await axios.delete(
-        `http://localhost:4000/api/tasks/${id}/delete`,
+        `${process.env.REACT_APP_BASE_URL}/tasks/${id}/delete`,
         { withCredentials: true }
       );
       return data;
